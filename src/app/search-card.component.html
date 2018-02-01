@@ -1,0 +1,36 @@
+<mat-card class="bus-ticket-card">
+    <mat-card-title>Book bus tickets online</mat-card-title>
+    <mat-card-content>
+        <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+            <div>
+                <mat-radio-group name="tripType" [(ngModel)]="model.tripType" required>
+                    <mat-radio-button  value="0">One way</mat-radio-button>
+                    <mat-radio-button  value="1">Round trip</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div>
+                <mat-input-container>
+                    <input matInput name="origin" placeholder="Origin" [(ngModel)]="model.origin" required>
+                </mat-input-container>
+                <mat-input-container>
+                    <input matInput name="destination" placeholder="Destination" [(ngModel)]="model.destination" required>
+                </mat-input-container>
+            </div>
+            <div>
+                <mat-input-container>
+                    <input matInput name="departureDate" [(ngModel)]="model.departureDate" [matDatepicker]="departPicker" placeholder="Depart:" required>
+                    <mat-datepicker-toggle matSuffix [for]="departPicker"></mat-datepicker-toggle>
+                </mat-input-container>
+                <mat-datepicker [startAt]="model.departureDate" #departPicker></mat-datepicker>
+
+                <mat-input-container>
+                    <input matInput name="arrivalDate" [(ngModel)]="model.arrivalDate" [matDatepicker]="returnPicker" placeholder="Return:" required>
+                    <mat-datepicker-toggle matSuffix [for]="returnPicker"></mat-datepicker-toggle>
+                </mat-input-container>
+                <mat-datepicker  [startAt]="model.arrivalDate" #returnPicker></mat-datepicker>
+            </div>
+            <button mat-raised-button color="accent" [disabled]="!searchForm.form.valid">Let's Go</button>
+        </form>
+    </mat-card-content>
+
+</mat-card>
